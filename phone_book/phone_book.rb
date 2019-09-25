@@ -9,9 +9,13 @@ class String
   class NameIndex
     class << self
       def create_index(names)
-        names.sort.inject(Hash.new{|h,k| h[k] = []}){|h, name| h[name.adan] << name;h}.to_a.sort
+        names.sort.inject(Hash.new{|h,k| h[k] = []}){|h, name| h[name.adan] << name;h}.to_a
+      end
+      def create_index_by_group_by(names)
+        names.sort.group_by(&:adan).to_a
       end
     end
   end
   
   p NameIndex.create_index(['キシモト', 'イトウ', 'ババ', 'カネダ', 'ワダ', 'ハマダ', 'ホリカワ', 'ドバシ'])
+  p NameIndex.create_index_by_group_by(['キシモト', 'イトウ', 'ババ', 'カネダ', 'ワダ', 'ハマダ', 'ホリカワ', 'ドバシ'])
